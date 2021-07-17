@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>VeraX📰-TheFake News Checker</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap" rel="stylesheet">
+
+</head>
+<body>
+<div id="wrapper">
+    <div id="left">
+        <div id="left-side-img">
+            <div id="left-content">
+                <h2 class="left_text">Let's create future <strong>together</strong></h2>
+            </div>
+        </div>
+    </div>
+    <div id="right">
+        <div class="login">
+            <div class="image">
+                <img id="logo" src="{{ url_for('static', filename='fakelogo.png') }} " alt="newspaper">
+            </div>
+	        <h1 id="head1">Fake News📰 Detector</h1>
+
+            <form id="form" action="{{ url_for('predict')}}" method="POST">
+            	<textarea id="textarea" name="message" rows="6" cols="50" required="required" placeholder="Please handover your news to us!" style="font-size: 18pt"></textarea>
+                <br>
+                <button class="button" type="submit" ><span>Predit</span></button>
+
+            <div class="results">
+
+                {% if pred == ['FAKE']%}
+                    <h2 style="color:rgb(163, 51, 51);
+                               font-size:40px;
+                                display: flex;
+                                justify-content: center;">Looks to be a Spam⚠️News📰 </h2>
+	            {% elif pred == ['REAL']%}
+				    <h2 style="color:rgb(2, 151, 34);
+                                font-size: 40px;
+                                display: flex;
+                                justify-content: center"><b>Looks to be a Real News📰</b></h2>
+	            {% endif %}
+	        </div>
+
+            </form>
+        </div>
+
+        <footer id="main-footer">
+        <p>Copyright &copy; 2021,VareX All Rights Reserved</p>
+        <div>
+            <a href="#">terms&conditions</a> | <a href="#">Privacy Policy</a>
+        </div>
+        </footer>
+    </div>
+</div>
+</body>
+</html>
